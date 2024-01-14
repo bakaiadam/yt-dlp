@@ -9,6 +9,7 @@ import warnings
 from ..dependencies import brotli, requests, urllib3
 from ..utils import bug_reports_message, int_or_none, variadic
 
+
 if requests is None:
     raise ImportError('requests module is not installed')
 
@@ -311,7 +312,8 @@ class RequestsRH(RequestHandler, InstanceStoreMixin):
                 timeout=float(request.extensions.get('timeout') or self.timeout),
                 proxies=request.proxies or self.proxies,
                 allow_redirects=True,
-                stream=True
+                stream=True,
+                verify=False
             )
 
         except requests.exceptions.TooManyRedirects as e:
